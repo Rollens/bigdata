@@ -5,13 +5,7 @@ import pandas as pd
 from datetime import datetime
 import re
 
-"""
-Read README and get the list of classification
-"""
-
-def bug(classification):
-    goto='https://www.cna.com.tw/list/'+classification+'.aspx'
-    url_list=get_map(goto)
+def bug(url_list):
     express=r"<\s*p[^>]*>(.*?)<\s*/\s*p>"
     regex=re.compile(express)
     news_list=[]
@@ -32,7 +26,6 @@ def bug(classification):
                 o_text=o_text+i+"\n"
             dict_news={'title':title,'content':o_text,'post_time':updatetime,'url':url}
             news_list.append(dict_news)
-        dict_news.clear()
     return news_list
 """
 with open('output.txt','w',encoding='utf-8') as f:
